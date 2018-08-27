@@ -1,0 +1,10 @@
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\bin\Debug\crud.exe.config
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\bin\Debug\crud.exe
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\bin\Debug\crud.pdb
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\bin\Debug\EntityFramework.dll
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\bin\Debug\EntityFramework.xml
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\obj\Debug\crud.csprojResolveAssemblyReference.cache
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\obj\Debug\crud.exe
+c:\users\qewruiop\documents\visual studio 2015\Projects\crud\crud\obj\Debug\crud.pdb

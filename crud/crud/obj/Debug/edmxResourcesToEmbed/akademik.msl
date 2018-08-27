@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="akademikModelStoreContainer" CdmEntityContainer="akademikEntities">
+    <EntitySetMapping Name="dosen">
+      <EntityTypeMapping TypeName="akademikModel.dosen">
+        <MappingFragment StoreEntitySet="dosen">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nama" ColumnName="nama" />
+          <ScalarProperty Name="jenis_kelamin" ColumnName="jenis_kelamin" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telepon" ColumnName="telepon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mahasiswa">
+      <EntityTypeMapping TypeName="akademikModel.mahasiswa">
+        <MappingFragment StoreEntitySet="mahasiswa">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nama" ColumnName="nama" />
+          <ScalarProperty Name="jenis_kelamin" ColumnName="jenis_kelamin" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telepon" ColumnName="telepon" />
+          <ScalarProperty Name="id_prodi" ColumnName="id_prodi" />
+          <ScalarProperty Name="id_dosen" ColumnName="id_dosen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="matakuliah">
+      <EntityTypeMapping TypeName="akademikModel.matakuliah">
+        <MappingFragment StoreEntitySet="matakuliah">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nama" ColumnName="nama" />
+          <ScalarProperty Name="sks" ColumnName="sks" />
+          <ScalarProperty Name="id_ruangkuliah" ColumnName="id_ruangkuliah" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ruang_kuliah">
+      <EntityTypeMapping TypeName="akademikModel.ruang_kuliah">
+        <MappingFragment StoreEntitySet="ruang_kuliah">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nama" ColumnName="nama" />
+          <ScalarProperty Name="kuota" ColumnName="kuota" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

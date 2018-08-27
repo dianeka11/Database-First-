@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="akademikModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="dosen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="jenis_kelamin" Type="nvarchar" MaxLength="50" />
+    <Property Name="alamat" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="telepon" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="mahasiswa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="jenis_kelamin" Type="nvarchar" MaxLength="50" />
+    <Property Name="alamat" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="telepon" Type="nvarchar" MaxLength="50" />
+    <Property Name="id_prodi" Type="nchar" MaxLength="10" />
+    <Property Name="id_dosen" Type="nchar" MaxLength="10" />
+    <Property Name="id_ruangan" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="matakuliah">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="sks" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="id_ruangkuliah" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'akademik.dbo.prodi' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="prodi">
+          <Property Name="id" Type="nchar" MaxLength="10" />
+          <Property Name="nama" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+  <EntityType Name="ruang_kuliah">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="nama" Type="nvarchar" MaxLength="50" />
+    <Property Name="kuota" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="FK_mahasiswa_mahasiswa">
+    <End Role="mahasiswa" Type="Self.mahasiswa" Multiplicity="1" />
+    <End Role="mahasiswa1" Type="Self.mahasiswa" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="mahasiswa">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="mahasiswa1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="akademikModelStoreContainer">
+    <EntitySet Name="dosen" EntityType="Self.dosen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mahasiswa" EntityType="Self.mahasiswa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="matakuliah" EntityType="Self.matakuliah" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ruang_kuliah" EntityType="Self.ruang_kuliah" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_mahasiswa_mahasiswa" Association="Self.FK_mahasiswa_mahasiswa">
+      <End Role="mahasiswa" EntitySet="mahasiswa" />
+      <End Role="mahasiswa1" EntitySet="mahasiswa" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

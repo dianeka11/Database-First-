@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="akademikModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dosen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jenis_kelamin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telepon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="mahasiswa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jenis_kelamin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telepon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_prodi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_dosen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="mahasiswa1" Relationship="Self.FK_mahasiswa_mahasiswa" FromRole="mahasiswa" ToRole="mahasiswa1" />
+    <NavigationProperty Name="mahasiswa2" Relationship="Self.FK_mahasiswa_mahasiswa" FromRole="mahasiswa1" ToRole="mahasiswa" />
+  </EntityType>
+  <EntityType Name="matakuliah">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sks" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="id_ruangkuliah" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ruang_kuliah">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kuota" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="FK_mahasiswa_mahasiswa">
+    <End Role="mahasiswa" Type="Self.mahasiswa" Multiplicity="1" />
+    <End Role="mahasiswa1" Type="Self.mahasiswa" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="mahasiswa">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="mahasiswa1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="akademikEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dosen" EntityType="Self.dosen" />
+    <EntitySet Name="mahasiswa" EntityType="Self.mahasiswa" />
+    <EntitySet Name="matakuliah" EntityType="Self.matakuliah" />
+    <EntitySet Name="ruang_kuliah" EntityType="Self.ruang_kuliah" />
+    <AssociationSet Name="FK_mahasiswa_mahasiswa" Association="Self.FK_mahasiswa_mahasiswa">
+      <End Role="mahasiswa" EntitySet="mahasiswa" />
+      <End Role="mahasiswa1" EntitySet="mahasiswa" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

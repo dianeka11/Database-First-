@@ -12,11 +12,17 @@ namespace crud
         {
             int pil;
             Console.WriteLine("Menu");
-            Console.WriteLine("1. Mahasiswa");
-            Console.WriteLine("2. Dosen");
-            Console.WriteLine("3. Mata Kuliah");
-            Console.WriteLine("4. Ruang Kuliah");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine("1. Insert Mahasiswa");
+            Console.WriteLine("2. Insert Dosen");
+            Console.WriteLine("3. Insert Mata Kuliah");
+            Console.WriteLine("4. Insert Ruang Kuliah");
+            Console.WriteLine("5. Read Mahasiswa");
+            Console.WriteLine("6. Read Dosen");
+            Console.WriteLine("7. Read Mata Kuliah");
+            Console.WriteLine("8. Read Ruang Kuliah");
+            Console.WriteLine("9. Update Mahasiswa");
+            Console.WriteLine("10. Delete MataKuliah");
+            Console.WriteLine("11. Exit");
             Console.WriteLine("-------------------------------");
             Console.Write("Pilih Menu : "); pil = Convert.ToInt32(Console.ReadLine());
 
@@ -39,6 +45,36 @@ namespace crud
                     panggilrk.Insertruangkuliah();
                     break;
                 case 5:
+                    MahasiswaController panggilrmhs = new MahasiswaController();
+                    panggilrmhs.Getmahasiswa();
+                    break;
+                case 6:
+                    MahasiswaController panggilrdosen = new MahasiswaController();
+                    panggilrdosen.Getdosen();
+                    break;
+                case 7:
+                    MahasiswaController panggilrmk = new MahasiswaController();
+                    panggilrmk.Getmatakuliah();
+                    break;
+                case 8:
+                    MahasiswaController panggilrrk = new MahasiswaController();
+                    panggilrrk.Getruangkuliah();
+                    break;
+                case 9:
+                    MahasiswaController panggilumhs = new MahasiswaController();
+                    System.Console.Write("Masukkan Id yang ingin di ubah : ");
+                    int input1;
+                    input1 = Convert.ToInt16(System.Console.ReadLine());
+                    panggilumhs.Updatemahasiswa(input1);
+                    break;
+                case 10:
+                    MahasiswaController panggildmk = new MahasiswaController();
+                    System.Console.Write("Masukkan Id yang ingin di hapus : ");
+                    string input;
+                    input = Convert.ToString(System.Console.ReadLine());
+                    panggildmk.deletematakuliah(input);
+                    break;
+                case 11:
                     break;
                 default:
                     break;
@@ -97,7 +133,7 @@ namespace crud
             string Nama_Mahasiswa = System.Console.ReadLine();
             System.Console.Write("Jenis Kelamin : ");
             string jenis_kelamin = System.Console.ReadLine();
-            System.Console.Write("Alamat Mahasiswa : ");
+            System.Console.Write("Alamat : ");
             string alamat_mahasiswa = System.Console.ReadLine();
             System.Console.Write("Email : ");
             string Email = System.Console.ReadLine();
@@ -250,7 +286,45 @@ namespace crud
             Console.ReadKey(true);
             return getalls;
         }
+        public mahasiswa GetById(int input)
+        {
+            var mahasiswa = _context.mahasiswa.Find(input);
+            if (mahasiswa == null)
+            {
+                System.Console.WriteLine("Id tersebut tidak ada");
+            }
+            return mahasiswa;
+        }
+        public int Updatemahasiswa(int input)
+        {
+            System.Console.Write("MASUKKAN NAMA BARU MAHASISWA     : ");
+            string Nama = System.Console.ReadLine();
+            System.Console.Write("MASUKKAN ALAMAT BARU MAHASISWA : ");
+            string alamat = System.Console.ReadLine();
+            System.Console.Write("MASUKKAN ID      : ");
+            string id_mhs = System.Console.ReadLine();
 
+            var getmhs = _context.mahasiswa.Find(Convert.ToInt16(id_mhs));
+            if (getmhs == null)
+            {
+                System.Console.Write("TIDAK ADA ID MAHASISWA : " + id_mhs);
+            }
+            else
+            {
+                mahasiswa mahasiswa = GetById(input);
+                mahasiswa.nama = Nama;
+                mahasiswa.alamat = alamat;
+                _context.Entry(mahasiswa).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
+            }
+            return input;
+        }
+        public void deletematakuliah (string input)
+        {
+            var x = (from y in _context.matakuliah where y.id == input select y).FirstOrDefault();
+            _context.matakuliah.Remove(x);
+            _context.SaveChanges();
+        }
     }
 }
 
